@@ -1,16 +1,16 @@
 INTRODUCTION
 ------------
  
-Shell script to dump PostgreSql database
+Shell script to dump PostgreSql procedures
 
 
 INSTALLATION/ TEST/ EXECUTION
 -----------------------------
 	
- 	./dump_database.sh [env] [schema]
+ 	./dump_procedure.sh [env] [database_name]
 	
 	* env defines the environment [dev|uat|prod]
-	* schema defines whether only schema or data
+	* Database name
 
  
 MAINTAINERS
