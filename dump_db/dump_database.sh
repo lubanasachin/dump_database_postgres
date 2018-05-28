@@ -8,7 +8,7 @@ schema=$2
 if [ -z "$envP" -a "$envP" == "" ] 
 then
 	printf "\nUSAGE: ./dump_database.sh [dev|uat|prod] [schema:yes|no]\n\n"
-	exit
+	exit 0
 fi
 
 #set db configs based on given environment
@@ -32,7 +32,7 @@ then
 	dbList=( db1 db2 )
 else 
 	printf "\nUSAGE: ./dump_database.sh [dev|uat|prod] [schema:yes|no]\n\n"
-	exit
+	exit 0
 fi
 
 printf "\nSTARTED \n\n"
@@ -48,7 +48,7 @@ cd $backupDir
 for i in "${dbList[@]}"
 do
 :
-	echo "Running for "$i
+	printf "\nRunning for $i\n"
 
 	#create env and db folder 
 	mkdir -p $envP/$i
@@ -65,8 +65,6 @@ do
 		echo /usr/bin/pg_dump -v -U "'$hUser'" -p 5432 -h "'$hName'" -d "'$i'" -f dump_$i.sql
 		/usr/bin/pg_dump -v -U "$hUser" -p 5432 -h "$hName" -d "$i" -f dump_$i.sql
 	fi
-
-	printf "Completed for $i\n\n"
 
 	#move back to main dir
 	cd ../../
